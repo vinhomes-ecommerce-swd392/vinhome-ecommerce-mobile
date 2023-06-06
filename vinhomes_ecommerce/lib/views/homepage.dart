@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../resources/bottom_nav_bar.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -25,34 +26,63 @@ class _HomeBodyState extends State<HomeBody> {
     });
   }
 
+  Widget buildChildWidget() {
+    switch (_selectedIndex) {
+      case 0:
+        return HomeWidget();
+      case 1:
+        return DiscoverWidget();
+      case 2:
+        return OrdersWidget();
+      case 3:
+        return ProfileWidget();
+      default:
+        return Container();
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      bottomNavigationBar: BottomNavigationBar(
-        backgroundColor: Color(0xEFF2F5),
-        items: const <BottomNavigationBarItem>[
-          BottomNavigationBarItem(
-            icon: Icon(Icons.home),
-            label: 'Home',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.explore),
-            label: 'Discover',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.receipt_long),
-            label: 'Orders',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.account_circle),
-            label: 'Profile',
-          ),
-        ],
-        currentIndex: _selectedIndex,
-        unselectedItemColor: Colors.black,
-        selectedItemColor: Colors.amber[800],
-        onTap: _onItemTapped,
-      ),
+      body: buildChildWidget(),
+      bottomNavigationBar:
+          BottomNavBar(currentIndex: _selectedIndex, onItemTap: _onItemTapped),
+    );
+  }
+}
+
+class HomeWidget extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Center(
+      child: Text('Home View'),
+    );
+  }
+}
+
+class DiscoverWidget extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Center(
+      child: Text('Search View'),
+    );
+  }
+}
+
+class OrdersWidget extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Center(
+      child: Text('OrdersWidget View'),
+    );
+  }
+}
+
+class ProfileWidget extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Center(
+      child: Text('ProfileWidget View'),
     );
   }
 }

@@ -66,10 +66,13 @@ class _LoginBodyState extends State<LoginBody> {
       child: Column(
         children: <Widget>[
           Container(
+            width: double.maxFinite,
+            alignment: Alignment.topLeft,
             margin: const EdgeInsets.only(top: 100, bottom: 40),
             child: const Padding(
                 padding: EdgeInsets.only(left: 10),
                 child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text("Welcome!",
                         style: TextStyle(
@@ -82,16 +85,15 @@ class _LoginBodyState extends State<LoginBody> {
           ),
           Container(
             margin: const EdgeInsets.symmetric(vertical: 30),
-            child: SizedBox(
+            child: Center(
               child: TextField(
                   keyboardType: TextInputType.number,
                   textAlign: TextAlign.center,
-                  obscureText: true,
                   decoration: InputDecoration(
                       alignLabelWithHint: true,
                       border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(45)),
-                      labelText: "Input your phone number")),
+                      hintText: "Input your phone number")),
             ),
           ),
           Container(
@@ -105,16 +107,14 @@ class _LoginBodyState extends State<LoginBody> {
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(45)),
                     foregroundColor: Colors.grey,
+                    backgroundColor: Color.fromRGBO(234, 152, 91, 1),
                     side: const BorderSide(color: Colors.grey),
                     padding: const EdgeInsets.fromLTRB(10, 10, 10, 10)),
-                child: const Row(
-                  mainAxisSize: MainAxisSize.min,
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: <Widget>[
-                    Text("Confirm",
-                        style: TextStyle(color: Colors.grey, fontSize: 16))
-                  ],
-                ),
+                child: const Text("Confirm",
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 16,
+                    )),
               ),
             ),
           ),

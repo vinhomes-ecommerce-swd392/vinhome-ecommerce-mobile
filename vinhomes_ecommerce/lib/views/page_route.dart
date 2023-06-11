@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../resources/bottom_nav_bar.dart';
+import 'home_page/home_widget.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -31,7 +32,7 @@ class _HomeBodyState extends State<HomeBody> {
       case 0:
         return HomeWidget();
       case 1:
-        return DiscoverWidget();
+        return CartWidget();
       case 2:
         return OrdersWidget();
       case 3:
@@ -51,20 +52,11 @@ class _HomeBodyState extends State<HomeBody> {
   }
 }
 
-class HomeWidget extends StatelessWidget {
+class CartWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Center(
-      child: Text('Home View'),
-    );
-  }
-}
-
-class DiscoverWidget extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Center(
-      child: Text('Search View'),
+      child: Text('Cart View'),
     );
   }
 }
@@ -73,7 +65,7 @@ class OrdersWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Center(
-      child: Text('OrdersWidget View'),
+      child: Text('Order View'),
     );
   }
 }

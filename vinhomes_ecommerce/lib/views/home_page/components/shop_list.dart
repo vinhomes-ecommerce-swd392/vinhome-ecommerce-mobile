@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:vinhomes_ecommerce/views/home_page/components/shop_item.dart';
+import 'package:vinhomes_ecommerce/views/home_page/components/shop_long_item.dart';
 
 class ShopListView extends StatelessWidget {
   String title;
@@ -15,15 +16,15 @@ class ShopListView extends StatelessWidget {
           padding: EdgeInsets.all(3),
           child: Text(title),
         ),
-        Container(
-            height: 150,
-            child: ListView(scrollDirection: Axis.horizontal, children: [
-              ShopCardView("KFC", 4.0),
-              ShopCardView("KFC", 4.0),
-              ShopCardView("KFC", 4.0),
-              ShopCardView("KFC", 4.0),
-              ShopCardView("KFC", 4.0),
-            ]))
+        SingleChildScrollView(
+            scrollDirection: Axis.horizontal,
+            child: Row(children: [
+              ShopSmallCardView("KFC", "api_link", 4.0),
+              ShopSmallCardView("KFC", "api_link", 4.0),
+              ShopSmallCardView("KFC", "api_link", 4.0),
+              ShopSmallCardView("KFC", "api_link", 4.0),
+              ShopSmallCardView("KFC", "api_link", 4.0),
+            ])),
       ],
     );
   }

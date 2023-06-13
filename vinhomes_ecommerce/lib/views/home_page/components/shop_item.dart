@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 
-class ShopCardView extends StatelessWidget {
+class ShopSmallCardView extends StatelessWidget {
   String shopName;
+  String apiSourceUrl;
   double rating;
-  ShopCardView(this.shopName, this.rating, {super.key});
+  ShopSmallCardView(this.shopName, this.apiSourceUrl, this.rating, {super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -19,6 +20,7 @@ class ShopCardView extends StatelessWidget {
                 alignment: Alignment.bottomCenter,
                 fit: BoxFit.fitHeight)),
         SizedBox(
+            height: 40,
             child: Text(shopName,
                 maxLines: 1,
                 overflow: TextOverflow.ellipsis,

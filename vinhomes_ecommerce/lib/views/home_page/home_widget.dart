@@ -18,40 +18,44 @@ class _HomeWidgetState extends State<HomeWidget> {
 
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      child: Padding(
-        padding: EdgeInsets.fromLTRB(20, 50, 20, 0),
-        child: Column(
-          children: [
-            const Padding(
-              padding: EdgeInsets.fromLTRB(0, 50, 0, 0),
-              child: Text("Good evening"),
-            ),
-            Padding(
-                padding: EdgeInsets.fromLTRB(0, 30, 0, 0),
-                child: GestureDetector(
-                  onTap: () {
-                    Navigator.push(context,
-                        MaterialPageRoute(builder: (content) => SearchPage()));
-                  },
-                  child: TextField(
-                    enabled: false,
-                    decoration: InputDecoration(
-                      hintText: 'Search',
-                      prefixIcon: Icon(Icons.search),
+    return Scaffold(
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: EdgeInsets.fromLTRB(20, 50, 20, 0),
+          child: Column(
+            children: [
+              const Padding(
+                padding: EdgeInsets.fromLTRB(0, 50, 0, 0),
+                child: Text("Good evening"),
+              ),
+              Padding(
+                  padding: EdgeInsets.fromLTRB(0, 30, 0, 0),
+                  child: GestureDetector(
+                    onTap: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (content) => SearchPage()));
+                    },
+                    child: TextField(
+                      enabled: false,
+                      decoration: InputDecoration(
+                        hintText: 'Search',
+                        prefixIcon: Icon(Icons.search),
+                      ),
                     ),
-                  ),
-                )),
-            Padding(
-                padding: EdgeInsets.fromLTRB(0, 30, 0, 0),
-                child: ShopListView("Đề xuất cho bạn")),
-            Padding(
-                padding: EdgeInsets.fromLTRB(0, 30, 0, 0),
-                child: ShopLongListView("Ưu đãi chớp nhoáng")),
-            Padding(
-                padding: EdgeInsets.fromLTRB(0, 30, 0, 0),
-                child: SeperatedList()),
-          ],
+                  )),
+              Padding(
+                  padding: EdgeInsets.fromLTRB(0, 30, 0, 0),
+                  child: ShopListView("Đề xuất cho bạn")),
+              Padding(
+                  padding: EdgeInsets.fromLTRB(0, 30, 0, 0),
+                  child: ShopLongListView("Ưu đãi chớp nhoáng")),
+              Padding(
+                  padding: EdgeInsets.fromLTRB(0, 30, 0, 0),
+                  child: SeperatedList()),
+            ],
+          ),
         ),
       ),
     );

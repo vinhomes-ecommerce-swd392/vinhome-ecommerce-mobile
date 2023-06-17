@@ -15,15 +15,13 @@ class ShopWidget extends StatelessWidget {
           children: [
             Padding(
       padding: EdgeInsets.all(1),
-      child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-        SizedBox(
+      child: SizedBox(
             height: 100,
             width: double.infinity,
             child: Image.network(
                 'https://t3.ftcdn.net/jpg/03/24/73/92/360_F_324739203_keeq8udvv0P2h1MLYJ0GLSlTBagoXS48.jpg',
                 alignment: Alignment.bottomCenter,
-                fit: BoxFit.fitHeight)),
-      ]),
+                fit: BoxFit.fitWidth)),
     ), const Padding(
               padding: EdgeInsets.fromLTRB(0, 50, 0, 0),
               child: Text("Welcome to Lunch Shop"),

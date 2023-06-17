@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import '../resources/bottom_nav_bar.dart';
 import 'home_page/home_widget.dart';
+import 'home_page/search_page.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -65,7 +66,19 @@ class OrdersWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Center(
-      child: Text('Order View'),
+      child: GestureDetector(
+        onTap: () {
+          Navigator.push(
+              context, MaterialPageRoute(builder: (content) => SearchPage()));
+        },
+        child: TextField(
+          enabled: false,
+          decoration: InputDecoration(
+            hintText: 'Search',
+            prefixIcon: Icon(Icons.search),
+          ),
+        ),
+      ),
     );
   }
 }

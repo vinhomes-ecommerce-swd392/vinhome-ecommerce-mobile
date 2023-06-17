@@ -2,11 +2,19 @@ import 'package:flutter/material.dart';
 import 'package:vinhomes_ecommerce/views/home_page/components/shop_item.dart';
 import 'package:vinhomes_ecommerce/views/home_page/components/shop_list.dart';
 import 'package:vinhomes_ecommerce/views/home_page/components/shop_seperated_list.dart';
+import 'package:vinhomes_ecommerce/views/home_page/search_page.dart';
 
 import 'components/shop_long_list.dart';
 
-class HomeWidget extends StatelessWidget {
+class HomeWidget extends StatefulWidget {
   const HomeWidget({super.key});
+
+  @override
+  State<HomeWidget> createState() => _HomeWidgetState();
+}
+
+class _HomeWidgetState extends State<HomeWidget> {
+  String keyword = "";
 
   @override
   Widget build(BuildContext context) {
@@ -19,10 +27,21 @@ class HomeWidget extends StatelessWidget {
               padding: EdgeInsets.fromLTRB(0, 50, 0, 0),
               child: Text("Good evening"),
             ),
-            const Padding(
-              padding: EdgeInsets.fromLTRB(0, 30, 0, 0),
-              child: SearchBar(),
-            ),
+            Padding(
+                padding: EdgeInsets.fromLTRB(0, 30, 0, 0),
+                child: GestureDetector(
+                  onTap: () {
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (content) => SearchPage()));
+                  },
+                  child: TextField(
+                    enabled: false,
+                    decoration: InputDecoration(
+                      hintText: 'Search',
+                      prefixIcon: Icon(Icons.search),
+                    ),
+                  ),
+                )),
             Padding(
                 padding: EdgeInsets.fromLTRB(0, 30, 0, 0),
                 child: ShopListView("Đề xuất cho bạn")),

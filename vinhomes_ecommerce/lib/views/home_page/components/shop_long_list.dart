@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:vinhomes_ecommerce/views/home_page/components/shop_item.dart';
 import 'package:vinhomes_ecommerce/views/home_page/components/shop_long_item.dart';
 
 class ShopLongListView extends StatelessWidget {

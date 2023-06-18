@@ -15,7 +15,9 @@ class ShopSmallCardView extends StatelessWidget {
             context,
             MaterialPageRoute(
                 builder: (content) => ShopItemDetailPage(
-                      itemName: "Single fried chicken",
+                      itemName:
+                          "Trà sữa trân châu đường đen không trân châu đường đen",
+                      itemPrice: 3.99,
                     )));
       },
       child: Card(

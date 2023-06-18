@@ -11,7 +11,7 @@ class ShopLongCardView extends StatelessWidget {
     return Card(
         child: Padding(
             padding: const EdgeInsets.all(5),
-            child: Container(
+            child: SizedBox(
               width: 250,
               child: Row(
                   crossAxisAlignment: CrossAxisAlignment.start,

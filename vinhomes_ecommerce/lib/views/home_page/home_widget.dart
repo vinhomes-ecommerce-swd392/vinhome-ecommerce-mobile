@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:vinhomes_ecommerce/views/home_page/components/shop_item.dart';
 import 'package:vinhomes_ecommerce/views/home_page/components/shop_list.dart';
 import 'package:vinhomes_ecommerce/views/home_page/components/shop_seperated_list.dart';
 import 'package:vinhomes_ecommerce/views/home_page/search_page.dart';

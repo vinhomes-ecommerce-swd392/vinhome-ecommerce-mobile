@@ -68,7 +68,7 @@ class CartWidget extends StatelessWidget {
 
   List<String> cartItems= ['Item 1', 'Item 2', 'Item 3']; // Assuming cartItems is a list of item names
 
-  CartWidget();
+  CartWidget({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -100,6 +100,8 @@ class CartWidget extends StatelessWidget {
 
 
 class OrdersWidget extends StatelessWidget {
+  const OrdersWidget({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Center(
@@ -121,6 +123,8 @@ class OrdersWidget extends StatelessWidget {
 }
 
 class ProfileWidget extends StatelessWidget {
+  const ProfileWidget({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Center(

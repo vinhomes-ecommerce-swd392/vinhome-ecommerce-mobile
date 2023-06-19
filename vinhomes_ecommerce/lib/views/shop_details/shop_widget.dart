@@ -5,10 +5,11 @@ import 'package:vinhomes_ecommerce/views/shop_details/components/shop_seperated_
 
 class ShopWidget extends StatelessWidget {
   const ShopWidget({super.key});
+
   
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
+    return Scaffold(body: SingleChildScrollView(
       child: Padding(
         padding: EdgeInsets.fromLTRB(20, 50, 20, 0),
         child: Column(
@@ -32,6 +33,6 @@ class ShopWidget extends StatelessWidget {
           ],
         ),
       ),
-    );
+    ),);
   }
 }

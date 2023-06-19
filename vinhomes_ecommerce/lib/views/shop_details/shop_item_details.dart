@@ -48,11 +48,11 @@ class _ShopItemDetailPageState extends State<ShopItemDetailPage> {
                     height: 300,
                     width: double.infinity,
                     child: Image.network(
-                        'https://s.memehay.com/files/posts/20200912/thanh-nien-deo-kinh-noi-hom-nay-len-mang-the-la-du-roi-6d36dfb54b646e1cdc937c0a706143b0.jpg',
+                        'https://upload.wikimedia.org/wikipedia/commons/f/ff/Egg_Sandwich.jpg',
                         alignment: Alignment.center,
                         fit: BoxFit.fitWidth)),
                 Positioned(
-                    top: 60,
+                    top: 80,
                     left: 20,
                     child: ElevatedButton.icon(
                       onPressed: () => Navigator.of(context).pop(),

@@ -16,7 +16,7 @@ class SeperatedList extends StatelessWidget {
         scrollDirection: Axis.vertical,
         itemBuilder: (context, index) {
           return ShopSeperatedItem(
-              _myList[index].shopName, _myList[index].shopDesc, 3.5);
+              _myList[index].shopName, _myList[index].shopDesc, 2.2);
         },
         separatorBuilder: (context, index) {
           return Divider(

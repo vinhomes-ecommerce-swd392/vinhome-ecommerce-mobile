@@ -24,7 +24,7 @@ class BottomNavBar extends StatelessWidget {
         ),
         NavigationDestination(
           icon: Icon(Icons.shopping_bag),
-          label: 'Cart',
+          label: 'Shop',
         ),
         NavigationDestination(
           icon: Icon(Icons.receipt_long),

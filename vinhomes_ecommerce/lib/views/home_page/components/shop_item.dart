@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:vinhomes_ecommerce/views/shop_details/shop_item_details.dart';
 
+import '../../shop_details/checkout_widget.dart';
+import '../../shop_details/shop_widget.dart';
+
 class ShopSmallCardView extends StatelessWidget {
   String shopName;
   String apiSourceUrl;
@@ -14,10 +17,7 @@ class ShopSmallCardView extends StatelessWidget {
         Navigator.push(
             context,
             MaterialPageRoute(
-                builder: (content) => ShopItemDetailPage(
-                      itemName: "Trà sữa trân châu đường đen không trân châu đường đen",
-                      itemPrice: 3.99,
-                    )));
+                builder: (content) => const ShopWidget()));
       },
       child: Card(
           child: Padding(

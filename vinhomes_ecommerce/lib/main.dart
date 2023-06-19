@@ -5,17 +5,18 @@ void main() {
   runApp(const MainApp());
 }
 
- class MainApp extends StatelessWidget {
+class MainApp extends StatelessWidget {
   const MainApp({super.key});
 
   @override
   Widget build(BuildContext context) {
     return const MaterialApp(
       home: Scaffold(
-        body: Center(
+          body: SafeArea(
+        child: Center(
           child: LoginPage(),
         ),
-      ),
+      )),
     );
   }
 }

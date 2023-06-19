@@ -22,6 +22,7 @@ class _HomeWidgetState extends State<HomeWidget> {
         child: Padding(
           padding: EdgeInsets.fromLTRB(20, 50, 20, 0),
           child: Column(
+            
             children: [
               const Padding(
                 padding: EdgeInsets.fromLTRB(0, 50, 0, 0),

@@ -6,9 +6,10 @@ import 'components/product_quantity_widget.dart';
 // ignore_for_file: prefer_const_constructors
 
 class ShopItemDetailPage extends StatefulWidget {
-  String? itemName;
-  double? itemPrice;
-  ShopItemDetailPage({super.key, this.itemName, this.itemPrice});
+  String itemName;
+  double itemPrice;
+  ShopItemDetailPage(
+      {super.key, required this.itemName, required this.itemPrice});
 
   @override
   State<ShopItemDetailPage> createState() => _ShopItemDetailPageState();
@@ -20,7 +21,7 @@ class _ShopItemDetailPageState extends State<ShopItemDetailPage> {
   @override
   void initState() {
     super.initState();
-    itemQuantity = 0;
+    itemQuantity = 1;
   }
 
   void changeQuantity(bool isAdding) {
@@ -28,7 +29,7 @@ class _ShopItemDetailPageState extends State<ShopItemDetailPage> {
       if (isAdding) {
         itemQuantity = itemQuantity! + 1;
       } else {
-        if (itemQuantity! > 0) itemQuantity = itemQuantity! - 1;
+        if (itemQuantity! > 1) itemQuantity = itemQuantity! - 1;
       }
     });
   }
@@ -85,9 +86,9 @@ class _ShopItemDetailPageState extends State<ShopItemDetailPage> {
                       width: 20,
                     ),
                     Text(
-                      widget.itemPrice!.toString(),
+                      "\$" + widget.itemPrice!.toString(),
                       style:
-                          TextStyle(fontSize: 27, fontWeight: FontWeight.bold),
+                          TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                     ),
                   ]),
             ),
@@ -150,6 +151,8 @@ class _ShopItemDetailPageState extends State<ShopItemDetailPage> {
               child: Row(
                 mainAxisSize: MainAxisSize.min,
                 children: <Widget>[
+                  Icon(Icons.shopping_cart, color: Colors.white),
+                  SizedBox(width: 10),
                   Text(
                     'Thêm vào giỏ hàng',
                     textAlign: TextAlign.left,
@@ -161,7 +164,8 @@ class _ShopItemDetailPageState extends State<ShopItemDetailPage> {
                   ),
                   SizedBox(width: 10),
                   Text(
-                    '\$6.69',
+                    '\$' +
+                        (widget.itemPrice! * itemQuantity!).toStringAsFixed(2),
                     style: TextStyle(
                       color: Color.fromRGBO(40, 184, 150, 1),
                       fontFamily: 'Abel',

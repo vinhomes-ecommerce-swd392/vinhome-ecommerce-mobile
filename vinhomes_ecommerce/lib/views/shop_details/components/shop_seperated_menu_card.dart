@@ -6,7 +6,9 @@ class ShopSeperatedItem extends StatelessWidget {
   String shopName;
   String apiSourceUrl;
   double rating;
-  ShopSeperatedItem(this.shopName, this.apiSourceUrl, this.rating, {super.key});
+  int id;
+  ShopSeperatedItem(this.shopName, this.apiSourceUrl, this.rating, this.id,
+      {super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -15,7 +17,7 @@ class ShopSeperatedItem extends StatelessWidget {
           Navigator.push(
               context,
               MaterialPageRoute(
-                  builder: (content) => ShopItemDetailPage(id: 2)));
+                  builder: (content) => ShopItemDetailPage(productId: id)));
         },
         child: Card(
             child: Padding(

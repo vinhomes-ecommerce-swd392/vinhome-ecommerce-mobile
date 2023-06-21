@@ -3,13 +3,14 @@ import 'package:vinhomes_ecommerce/views/shop_details/components/text_input_widg
 
 import '../../resources/dismiss_keyboard_widget.dart';
 import '../../view_models/product_view_model.dart';
+import '../../view_models/products_list_view_model.dart';
 import 'components/product_quantity_widget.dart';
 import 'package:provider/provider.dart';
 // ignore_for_file: prefer_const_constructors
 
 class ShopItemDetailPage extends StatefulWidget {
-  int id;
-  ShopItemDetailPage({super.key, required this.id});
+  int productId;
+  ShopItemDetailPage({super.key, required this.productId});
 
   @override
   State<ShopItemDetailPage> createState() => _ShopItemDetailPageState();
@@ -23,7 +24,7 @@ class _ShopItemDetailPageState extends State<ShopItemDetailPage> {
     super.initState();
     itemQuantity = 1;
     Provider.of<ProductViewModel>(context, listen: false)
-        .fetchProduct(widget.id);
+        .fetchProduct(widget.productId);
   }
 
   void changeQuantity(bool isAdding) {
@@ -40,37 +41,35 @@ class _ShopItemDetailPageState extends State<ShopItemDetailPage> {
   Widget build(BuildContext context) {
     final productOnProvider = Provider.of<ProductViewModel>(context);
     return Scaffold(
-        body: SafeArea(
-      child: SingleChildScrollView(
+      body: CustomScrollView(slivers: [
+        SliverAppBar(
+          expandedHeight: 200,
+          stretch: true,
+          floating: true,
+          onStretchTrigger: () {
+            // Refresh the list, maybe
+            return Future.value();
+          },
+          flexibleSpace: FlexibleSpaceBar(
+            background: productOnProvider.product != null
+                ? Image.network(productOnProvider.product!.productUrl,
+                    fit: BoxFit.cover)
+                : Container(
+                    height: 100,
+                    width: 100,
+                    child: CircularProgressIndicator(),
+                  ),
+            stretchModes: <StretchMode>[
+              StretchMode.zoomBackground,
+              StretchMode.blurBackground,
+              StretchMode.fadeTitle,
+            ],
+          ),
+        ),
+        SliverToBoxAdapter(
           child: productOnProvider.product != null
               ? Column(
                   children: [
-                    Stack(
-                      alignment: AlignmentDirectional.topStart,
-                      children: [
-                        SizedBox(
-                            height: 300,
-                            width: double.infinity,
-                            child: Image.network(
-                              productOnProvider.product!.productUrl,
-                              alignment: Alignment.center,
-                              fit: BoxFit.fitWidth,
-                            )),
-                        Positioned(
-                            top: 20,
-                            left: 20,
-                            child: ElevatedButton.icon(
-                              onPressed: () => Navigator.of(context).pop(),
-                              icon: const Icon(Icons.arrow_left_sharp),
-                              label: const Text('Back'),
-                              style: ElevatedButton.styleFrom(
-                                elevation: 0,
-                                foregroundColor: Colors.black,
-                                backgroundColor: Colors.white,
-                              ),
-                            )),
-                      ],
-                    ),
                     SizedBox(height: 30),
                     Padding(
                       padding: EdgeInsets.symmetric(horizontal: 20),
@@ -189,13 +188,15 @@ class _ShopItemDetailPageState extends State<ShopItemDetailPage> {
                     ),
                   ],
                 )
-              : Center(
-                  child: Container(
-                    height: 100,
-                    width: 100,
+              : Container(
+                  width: double.infinity,
+                  height: 500,
+                  child: Center(
                     child: CircularProgressIndicator(),
                   ),
-                )),
-    ));
+                ),
+        )
+      ]),
+    );
   }
 }

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:vinhomes_ecommerce/view_models/store_view_model.dart';
 import 'package:vinhomes_ecommerce/views/shop_details/components/text_input_widget.dart';
 
 import '../../resources/dismiss_keyboard_widget.dart';
@@ -23,7 +24,7 @@ class _ShopItemDetailPageState extends State<ShopItemDetailPage> {
     super.initState();
     itemQuantity = 1;
     Provider.of<ProductViewModel>(context, listen: false)
-        .fetchProduct(widget.productId);
+        .fetchProduct(widget.id);
   }
 
   void changeQuantity(bool isAdding) {

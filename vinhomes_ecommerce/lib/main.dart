@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:vinhomes_ecommerce/view_models/product_view_model.dart';
+import 'package:vinhomes_ecommerce/view_models/store_view_model.dart';
 import "views/login.dart";
 
 void main() {
@@ -15,6 +16,7 @@ class MainApp extends StatelessWidget {
     return MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (context) => ProductViewModel()),
+        ChangeNotifierProvider(create: (context) => StoreViewModel()),
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,

@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:vinhomes_ecommerce/view_models/product_view_model.dart';
-import 'package:vinhomes_ecommerce/view_models/products_list_view_model.dart';
 import "views/login.dart";
 
 void main() {

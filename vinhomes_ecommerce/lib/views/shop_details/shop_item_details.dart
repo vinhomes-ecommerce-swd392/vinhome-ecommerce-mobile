@@ -3,7 +3,6 @@ import 'package:vinhomes_ecommerce/views/shop_details/components/text_input_widg
 
 import '../../resources/dismiss_keyboard_widget.dart';
 import '../../view_models/product_view_model.dart';
-import '../../view_models/products_list_view_model.dart';
 import 'components/product_quantity_widget.dart';
 import 'package:provider/provider.dart';
 // ignore_for_file: prefer_const_constructors

@@ -24,7 +24,7 @@ class _ShopItemDetailPageState extends State<ShopItemDetailPage> {
     super.initState();
     itemQuantity = 1;
     Provider.of<ProductViewModel>(context, listen: false)
-        .fetchProduct(widget.id);
+        .fetchProduct(widget.productId);
   }
 
   void changeQuantity(bool isAdding) {

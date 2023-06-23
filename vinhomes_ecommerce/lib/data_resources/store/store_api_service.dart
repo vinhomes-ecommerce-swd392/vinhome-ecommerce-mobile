@@ -8,7 +8,7 @@ import '../api_urls.dart';
 
 class StoreApiServices {
   Future<List<Store>> fetchStoreList() {
-    var url = Uri.https(ApiUrls().API_STORE_LIST);
+    var url = Uri.parse(ApiUrls().API_STORE_LIST);
     return http.get(url).then((http.Response response) {
       final String jsonBody = response.body;
       final int statusCode = response.statusCode;

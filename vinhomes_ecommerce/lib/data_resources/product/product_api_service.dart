@@ -8,12 +8,14 @@ import '../api_urls.dart';
 
 class ProductApiServices {
   Future<List<Product>> fetchProductList() {
-    var url = Uri.https(ApiUrls().API_PRODUCTS_LIST);
-    return http.get(url).then((http.Response response) {
+    var url = Uri.parse(ApiUrls().API_PRODUCTS_LIST);
+    return http
+    .get(url)
+    .then((http.Response response) {
       final String jsonBody = response.body;
       final int statusCode = response.statusCode;
 
-      if (statusCode != 200 || jsonBody == null) {
+      if (statusCode != 200 || (jsonBody == null)) {
         print(response.reasonPhrase);
         throw new FetchDataException(
             "StatusCode:$statusCode, Error:${response.reasonPhrase}");
@@ -31,7 +33,9 @@ class ProductApiServices {
 
   Future<Product> fetchProduct(int id) {
     var url = Uri.parse(ApiUrls().API_PRODUCTS_LIST + '/' + id.toString());
-    return http.get(url).then((http.Response response) {
+    return http
+    .get(url)
+    .then((http.Response response) {
       final String jsonBody = response.body;
       final int statusCode = response.statusCode;
 

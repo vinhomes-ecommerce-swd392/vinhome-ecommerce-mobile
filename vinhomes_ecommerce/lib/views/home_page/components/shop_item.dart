@@ -4,12 +4,16 @@ import 'package:vinhomes_ecommerce/views/shop_details/shop_item_details.dart';
 import '../../shop_details/checkout_widget.dart';
 import '../../shop_details/shop_widget.dart';
 
-class ShopSmallCardView extends StatelessWidget {
+class ShopSmallCardView extends StatefulWidget {
+  int shopId;
   String shopName;
-  String apiSourceUrl;
-  double rating;
-  ShopSmallCardView(this.shopName, this.apiSourceUrl, this.rating, {super.key});
+  ShopSmallCardView({super.key, required this.shopId, required this.shopName});
 
+  @override
+  State<ShopSmallCardView> createState() => _ShopSmallCardViewState();
+}
+
+class _ShopSmallCardViewState extends State<ShopSmallCardView> {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
@@ -17,7 +21,7 @@ class ShopSmallCardView extends StatelessWidget {
         Navigator.push(
             context,
             MaterialPageRoute(
-                builder: (content) => const ShopWidget()));
+                builder: (content) => ShopWidget(shopId: widget.shopId)));
       },
       child: Card(
           child: Padding(
@@ -32,7 +36,7 @@ class ShopSmallCardView extends StatelessWidget {
                   fit: BoxFit.fitHeight)),
           SizedBox(
               height: 40,
-              child: Text(shopName,
+              child: Text(widget.shopName,
                   maxLines: 1,
                   overflow: TextOverflow.ellipsis,
                   softWrap: false,

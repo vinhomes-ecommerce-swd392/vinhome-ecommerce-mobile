@@ -2,13 +2,17 @@ import 'package:flutter/material.dart';
 
 import '../shop_item_details.dart';
 
-class ShopSeperatedItem extends StatelessWidget {
-  String shopName;
-  String apiSourceUrl;
-  double rating;
+class ShopSeperatedProductItem extends StatelessWidget {
+  String productName;
   int id;
-  ShopSeperatedItem(this.shopName, this.apiSourceUrl, this.rating, this.id,
-      {super.key});
+  String imageUrl;
+  double price;
+  ShopSeperatedProductItem(
+      {super.key,
+      required this.productName,
+      required this.id,
+      required this.imageUrl,
+      required this.price});
 
   @override
   Widget build(BuildContext context) {
@@ -29,8 +33,7 @@ class ShopSeperatedItem extends StatelessWidget {
                       SizedBox(
                           height: 70,
                           width: 100,
-                          child: Image.network(
-                              'https://upload.wikimedia.org/wikipedia/commons/f/ff/Egg_Sandwich.jpg',
+                          child: Image.network(imageUrl,
                               alignment: Alignment.bottomCenter,
                               fit: BoxFit.fitWidth)),
                       const SizedBox(width: 3), //Seperator
@@ -39,12 +42,12 @@ class ShopSeperatedItem extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.start,
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Text(shopName,
+                          Text(productName,
                               maxLines: 2,
                               overflow: TextOverflow.ellipsis,
                               softWrap: false,
                               style: Theme.of(context).textTheme.bodyMedium),
-                          Text(shopName,
+                          Text(price.toString(),
                               maxLines: 2,
                               overflow: TextOverflow.ellipsis,
                               softWrap: false,

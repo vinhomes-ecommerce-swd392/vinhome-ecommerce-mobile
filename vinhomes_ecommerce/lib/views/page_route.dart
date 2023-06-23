@@ -34,7 +34,7 @@ class _HomeBodyState extends State<HomeBody> {
       case 0:
         return HomeWidget();
       case 1:
-        return ShopWidget();
+        return ShopWidget(shopId: 1,);
       case 2:
         return OrdersWidget();
       case 3:

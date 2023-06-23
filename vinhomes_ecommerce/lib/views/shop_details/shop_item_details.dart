@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:vinhomes_ecommerce/view_models/store_view_model.dart';
 import 'package:vinhomes_ecommerce/views/shop_details/components/text_input_widget.dart';
 
 import '../../resources/dismiss_keyboard_widget.dart';
@@ -41,11 +40,12 @@ class _ShopItemDetailPageState extends State<ShopItemDetailPage> {
   Widget build(BuildContext context) {
     final productOnProvider = Provider.of<ProductViewModel>(context);
     return Scaffold(
-      body: CustomScrollView(slivers: [
+        body: DismissKeyboard(
+      child: CustomScrollView(slivers: [
         SliverAppBar(
           expandedHeight: 200,
           stretch: true,
-          floating: true,
+          pinned: true,
           onStretchTrigger: () {
             // Refresh the list, maybe
             return Future.value();
@@ -197,6 +197,6 @@ class _ShopItemDetailPageState extends State<ShopItemDetailPage> {
                 ),
         )
       ]),
-    );
+    ));
   }
 }

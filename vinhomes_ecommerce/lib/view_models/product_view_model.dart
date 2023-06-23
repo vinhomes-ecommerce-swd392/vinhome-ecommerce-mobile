@@ -13,6 +13,7 @@ class ProductViewModel with ChangeNotifier {
   }
 
   fetchProduct(int id) async {
+    if (product != null && product!.id != id) product = null;
     this.product = await ProductApiServices().fetchProduct(id);
     notifyListeners();
   }

@@ -2,10 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:vinhomes_ecommerce/view_models/product_view_model.dart';
 import 'package:vinhomes_ecommerce/view_models/store_view_model.dart';
-import 'package:vinhomes_ecommerce/views/shop_details/components/seperated_product_list.dart';
+import 'package:vinhomes_ecommerce/views/shop_details/components/product_card_list.dart';
+
+import '../../models/order.dart';
+import '../../view_models/order_view_model.dart';
 
 class ShopWidget extends StatefulWidget {
-  int shopId;
+  final String shopId;
   ShopWidget({super.key, required this.shopId});
 
   @override
@@ -25,6 +28,10 @@ class _ShopWidgetState extends State<ShopWidget> {
   Widget build(BuildContext context) {
     final productOnProvider = Provider.of<ProductViewModel>(context);
     final storeOnProvider = Provider.of<StoreViewModel>(context);
+
+    var storeProductList = productOnProvider.productList
+        .where((element) => element.storeId == storeOnProvider.store!.id)
+        .toList();
     return Scaffold(
         body: SafeArea(
       child: CustomScrollView(
@@ -39,8 +46,14 @@ class _ShopWidgetState extends State<ShopWidget> {
             },
             flexibleSpace: FlexibleSpaceBar(
               background: storeOnProvider.store != null
-                  ? Image.network(storeOnProvider.store!.storeUrl,
-                      fit: BoxFit.cover)
+                  ? Image.network(storeOnProvider.store!.imageUrl,
+                      fit: BoxFit.cover,
+                      errorBuilder: (context, error, stackTrace) {
+                      return Container(
+                        color: Colors
+                            .grey, // Fill color to display when the image is not found
+                      );
+                    })
                   : Container(
                       height: 100,
                       width: 100,
@@ -61,13 +74,56 @@ class _ShopWidgetState extends State<ShopWidget> {
                     child: Column(
                       children: [
                         Padding(
-                          padding: EdgeInsets.fromLTRB(0, 30, 0, 0),
-                          child: Text(storeOnProvider.store!.storeName!),
-                        ),
+                            padding: EdgeInsets.fromLTRB(0, 0, 0, 30),
+                            child: Card(
+                              child: Column(children: [
+                                Padding(
+                                    padding: EdgeInsets.fromLTRB(0, 10, 0, 5),
+                                    child: Text(
+                                      storeOnProvider.store!.name!,
+                                      style: TextStyle(
+                                          fontFamily: 'Abel',
+                                          fontSize: 20,
+                                          fontWeight: FontWeight.bold),
+                                    )),
+                                Divider(),
+                                Padding(
+                                  padding: EdgeInsets.all(5),
+                                  child: Row(
+                                    children: [
+                                      Icon(Icons.location_on),
+                                      SizedBox(width: 5),
+                                      Expanded(
+                                          child: Text(
+                                        storeOnProvider.store!.address!,
+                                        maxLines: 2,
+                                        overflow: TextOverflow.ellipsis,
+                                      ))
+                                    ],
+                                  ),
+                                ),
+                                Divider(),
+                                Padding(
+                                  padding: EdgeInsets.all(5),
+                                  child: Row(
+                                    children: [
+                                      Icon(Icons.list_alt),
+                                      SizedBox(width: 5),
+                                      Expanded(
+                                          child: Text(
+                                        storeOnProvider.store!.description!,
+                                        maxLines: 3,
+                                        overflow: TextOverflow.ellipsis,
+                                      ))
+                                    ],
+                                  ),
+                                )
+                              ]),
+                            )),
                         Padding(
                             padding: EdgeInsets.fromLTRB(0, 0, 0, 0),
                             child: SeperatedProductList(
-                              productList: productOnProvider.productList,
+                              productList: storeProductList,
                             )),
                       ],
                     ),

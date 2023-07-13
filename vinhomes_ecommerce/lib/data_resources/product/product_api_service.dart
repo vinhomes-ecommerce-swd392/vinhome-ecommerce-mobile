@@ -1,17 +1,14 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:vinhomes_ecommerce/models/product.dart';
-import 'dart:convert' as json;
 
 import '../../resources/utils/fetch_data_exception.dart';
 import '../api_urls.dart';
 
 class ProductApiServices {
   Future<List<Product>> fetchProductList() {
-    var url = Uri.parse(ApiUrls().API_PRODUCTS_LIST);
-    return http
-    .get(url)
-    .then((http.Response response) {
+    var url = Uri.https(ApiUrls().BASE_API_URL, ApiUrls().API_PRODUCTS_LIST);
+    return http.get(url).then((http.Response response) {
       final String jsonBody = response.body;
       final int statusCode = response.statusCode;
 
@@ -31,11 +28,10 @@ class ProductApiServices {
     });
   }
 
-  Future<Product> fetchProduct(int id) {
-    var url = Uri.parse(ApiUrls().API_PRODUCTS_LIST + '/' + id.toString());
-    return http
-    .get(url)
-    .then((http.Response response) {
+  Future<Product> fetchProduct(String id) {
+    var url = Uri.https(
+        ApiUrls().BASE_API_URL, ApiUrls().API_PRODUCTS_LIST + '/' + id);
+    return http.get(url).then((http.Response response) {
       final String jsonBody = response.body;
       final int statusCode = response.statusCode;
 
@@ -45,8 +41,8 @@ class ProductApiServices {
             "StatusCode:$statusCode, Error:${response.reasonPhrase}");
       }
 
-      final JsonDecoder _decoder = new JsonDecoder();
-      final useListContainer = _decoder.convert(jsonBody);
+      final JsonDecoder decoder = JsonDecoder();
+      final useListContainer = decoder.convert(jsonBody);
 
       return Product.fromJson(useListContainer);
     });

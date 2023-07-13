@@ -1,18 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:vinhomes_ecommerce/models/product.dart';
 
 import '../shop_item_details.dart';
 
 class ShopSeperatedProductItem extends StatelessWidget {
-  String productName;
-  int id;
-  String imageUrl;
-  double price;
-  ShopSeperatedProductItem(
-      {super.key,
-      required this.productName,
-      required this.id,
-      required this.imageUrl,
-      required this.price});
+  final Product product;
+  ShopSeperatedProductItem({
+    super.key,
+    required this.product,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -21,7 +17,8 @@ class ShopSeperatedProductItem extends StatelessWidget {
           Navigator.push(
               context,
               MaterialPageRoute(
-                  builder: (content) => ShopItemDetailPage(productId: id)));
+                  builder: (content) =>
+                      ShopItemDetailPage(productId: product.id!)));
         },
         child: Card(
             child: Padding(
@@ -33,21 +30,27 @@ class ShopSeperatedProductItem extends StatelessWidget {
                       SizedBox(
                           height: 70,
                           width: 100,
-                          child: Image.network(imageUrl,
+                          child: Image.network(product.imageUrl,
                               alignment: Alignment.bottomCenter,
-                              fit: BoxFit.fitWidth)),
+                              fit: BoxFit.cover,
+                              errorBuilder: (context, error, stackTrace) {
+                            return Container(
+                              color: Colors
+                                  .grey, // Fill color to display when the image is not found
+                            );
+                          })),
                       const SizedBox(width: 3), //Seperator
                       Expanded(
                           child: Column(
                         mainAxisAlignment: MainAxisAlignment.start,
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Text(productName,
+                          Text(product.name,
                               maxLines: 2,
                               overflow: TextOverflow.ellipsis,
                               softWrap: false,
                               style: Theme.of(context).textTheme.bodyMedium),
-                          Text(price.toString(),
+                          Text(product.price.toString(),
                               maxLines: 2,
                               overflow: TextOverflow.ellipsis,
                               softWrap: false,

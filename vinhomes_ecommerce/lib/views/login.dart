@@ -1,4 +1,6 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import '../resources/auth.dart';
 import 'page_route.dart';
 
 class LoginPage extends StatelessWidget {
@@ -18,15 +20,20 @@ class LoginBody extends StatefulWidget {
 }
 
 class _LoginBodyState extends State<LoginBody> {
-  void pressed() {
-    // signInWithGoogle().then((user) => {
-    //       this.user = user,
-    //       Navigator.push(context,
-    //           MaterialPageRoute(builder: (content) => MyHomePage(user)))
-    //     });
+  late User user;
 
-    Navigator.pushReplacement(
-        context, MaterialPageRoute(builder: (content) => HomePage()));
+  @override
+  void initState() {
+    super.initState();
+    signOutGoogle();
+  }
+
+  void pressed() {
+    signInWithGoogle().then((user) => {
+          this.user = user,
+          Navigator.pushReplacement(context,
+              MaterialPageRoute(builder: (content) => HomePage(user: user)))
+        });
   }
 
   Widget googleLoginButton() {
@@ -50,7 +57,7 @@ class _LoginBodyState extends State<LoginBody> {
             ),
             Padding(
               padding: EdgeInsets.only(left: 10),
-              child: Text("Continue with Google Account",
+              child: Text("Continue with Google",
                   style: TextStyle(color: Colors.grey, fontSize: 16)),
             )
           ],

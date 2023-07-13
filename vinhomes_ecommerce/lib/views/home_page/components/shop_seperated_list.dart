@@ -1,28 +1,40 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:vinhomes_ecommerce/views/home_page/components/shop_seperated_card.dart';
 
-class SeperatedList extends StatelessWidget {
+import '../../../view_models/store_view_model.dart';
+
+class SeperatedList extends StatefulWidget {
   SeperatedList({super.key});
-  final List _myList = List.generate(
-    5,
-    (index) => (shopName: "Shop $index", shopDesc: "Shop Desc $index"),
-  );
+
+  @override
+  State<SeperatedList> createState() => _SeperatedListState();
+}
+
+class _SeperatedListState extends State<SeperatedList> {
+  @override
+  void initState() {
+    super.initState();
+    Provider.of<StoreViewModel>(context, listen: false).fetchStoreList();
+  }
 
   @override
   Widget build(BuildContext context) {
+    final storeOnProvider = Provider.of<StoreViewModel>(context);
     return ListView.separated(
         shrinkWrap: true,
         physics: NeverScrollableScrollPhysics(),
         scrollDirection: Axis.vertical,
         itemBuilder: (context, index) {
           return ShopSeperatedItem(
-              _myList[index].shopName, _myList[index].shopDesc, 3.5);
+            store: storeOnProvider.storeList[index],
+          );
         },
         separatorBuilder: (context, index) {
           return Divider(
             color: Theme.of(context).primaryColor,
           );
         },
-        itemCount: _myList.length);
+        itemCount: storeOnProvider.storeList.length);
   }
 }

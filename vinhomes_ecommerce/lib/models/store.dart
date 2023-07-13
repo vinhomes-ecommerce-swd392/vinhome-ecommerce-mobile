@@ -1,33 +1,19 @@
 class Store {
-  int? id;
-  int? userID;
-  int? buildingID;
-  String? storeName;
-  String? contactPhone;
-  String? contactMail;
-  String? contactFacebook;
-  String? contactZalo;
-  String storeUrl;
+  String? id;
+  String? name;
+  String? description;
+  String? address;
+  String imageUrl;
+  String? storeOwnerId;
 
-  Store(
-      this.id,
-      this.userID,
-      this.buildingID,
-      this.storeName,
-      this.contactPhone,
-      this.contactMail,
-      this.contactFacebook,
-      this.contactZalo,
-      this.storeUrl);
+  Store(this.id, this.storeOwnerId, this.name, this.address, this.description,
+      this.imageUrl);
 
   Store.fromJson(Map<String, dynamic> json)
-      : id = int.tryParse(json['id'].toString()),
-        userID = int.tryParse(json['userID'].toString()),
-        buildingID = int.tryParse(json['buildingId'].toString()),
-        storeName = json['storeName'],
-        contactPhone = json['contactPhone'],
-        contactMail = json['contactMail'],
-        contactFacebook = json['contactFacebook'],
-        contactZalo = json['contactZalo'],
-        storeUrl = json['storeUrl'];
+      : id = json['id'],
+        name = json['name'],
+        address = json['address'],
+        description = json['description'],
+        storeOwnerId = json['storeOwnerId'],
+        imageUrl = json['imageUrl'];
 }

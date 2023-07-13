@@ -12,7 +12,7 @@ class ProductViewModel with ChangeNotifier {
     notifyListeners();
   }
 
-  fetchProduct(int id) async {
+  fetchProduct(String id) async {
     if (product != null && product!.id != id) product = null;
     this.product = await ProductApiServices().fetchProduct(id);
     notifyListeners();

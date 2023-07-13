@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "778533524226",
+    "firebase_url": "https://vinhome-ecommerence-default-rtdb.firebaseio.com",
+    "project_id": "vinhome-ecommerence",
+    "storage_bucket": "vinhome-ecommerence.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:778533524226:android:37f75dc86b3af533c9e81b",
+        "android_client_info": {
+          "package_name": "com.example.vinhomes_ecommerce"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "778533524226-trneqi0mnbseu3brtuluhap1ch9kpa9a.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCJ17nDgofiecX3-WqEiSp-45Qge9vm06w"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "778533524226-pe2vp5lhv4q0rsdb0v1f4k4j3pn8bmrv.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "778533524226-m0md7rmce4e194bb56e3bd3odilk57qt.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.vinhomesEcommerce.RunnerTests"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

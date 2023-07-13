@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:vinhomes_ecommerce/views/shop_details/components/seperated_item_card.dart';
+import 'package:vinhomes_ecommerce/views/shop_details/components/product_card_item.dart';
 
 import '../../../models/product.dart';
 
@@ -15,10 +15,8 @@ class SeperatedProductList extends StatelessWidget {
         scrollDirection: Axis.vertical,
         itemBuilder: (context, index) {
           return ShopSeperatedProductItem(
-              productName: productList[index].name,
-              id: productList[index].id!,
-              imageUrl: productList[index].productUrl,
-              price: productList[index].originalPrice);
+            product: productList[index],
+          );
         },
         separatorBuilder: (context, index) {
           return Divider(

@@ -12,12 +12,25 @@ dependencies:
   cupertino_icons: ^1.0.2
   http: ^0.13.3
   provider: ^5.0.0
+  google_sign_in: ^6.1.4
+  firebase_auth: ^4.6.3
+  flutter_slidable: ^3.0.0
+  flutter_launcher_icons: ^0.13.1
+  collection: ^1.17.1
+  firebase_messaging: ^14.6.4
+  json_annotation: ^4.8.1
 dev_dependencies:
   flutter_test:
     sdk: flutter
   flutter_lints: ^2.0.0
+  flutter_launcher_icons: "^0.13.1"
 
 flutter:
   uses-material-design: true
   assets:
     - assets/
+
+flutter_launcher_icons:
+  android: "launcher_icon"
+  ios: true
+  image_path: "assets/giga_chad_launcher.jpg"

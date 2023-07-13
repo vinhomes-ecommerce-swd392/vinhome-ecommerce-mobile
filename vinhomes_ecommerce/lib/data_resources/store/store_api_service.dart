@@ -8,7 +8,7 @@ import '../api_urls.dart';
 
 class StoreApiServices {
   Future<List<Store>> fetchStoreList() {
-    var url = Uri.parse(ApiUrls().API_STORE_LIST);
+    var url = Uri.https(ApiUrls().BASE_API_URL, ApiUrls().API_STORE_LIST);
     return http.get(url).then((http.Response response) {
       final String jsonBody = response.body;
       final int statusCode = response.statusCode;
@@ -20,17 +20,20 @@ class StoreApiServices {
       }
 
       final JsonDecoder _decoder = new JsonDecoder();
-      final useListContainer = _decoder.convert(jsonBody);
-      final List userList = useListContainer;
+      final storeListContainer = _decoder.convert(jsonBody);
+      final List storeList = storeListContainer;
 
-      return userList
+      return storeList
           .map((contactRaw) => new Store.fromJson(contactRaw))
           .toList();
     });
   }
 
-  Future<Store> fetchStore(int id) {
-    var url = Uri.parse(ApiUrls().API_STORE_LIST + '/' + id.toString());
+  Future<Store> fetchStore(String id) {
+    var queryParams = {
+      'include': 'Products',
+    };
+    var url = Uri.https(ApiUrls().BASE_API_URL, ApiUrls().API_STORE_LIST+ '/' + id,queryParams);
     return http.get(url).then((http.Response response) {
       final String jsonBody = response.body;
       final int statusCode = response.statusCode;
@@ -42,9 +45,9 @@ class StoreApiServices {
       }
 
       final JsonDecoder _decoder = new JsonDecoder();
-      final useListContainer = _decoder.convert(jsonBody);
+      final storeContainer = _decoder.convert(jsonBody);
 
-      return Store.fromJson(useListContainer);
+      return Store.fromJson(storeContainer);
     });
   }
 }

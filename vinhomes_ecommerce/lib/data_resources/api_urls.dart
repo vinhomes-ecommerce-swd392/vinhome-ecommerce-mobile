@@ -1,7 +1,11 @@
 class ApiUrls {
-  final String API_PRODUCTS_LIST =
-      'https://648ff4ac1e6aa71680ca4908.mockapi.io/Products';
+  final String BASE_API_URL =
+      'vinhomesecommercewebapi.azurewebsites.net';
+  final String API_PRODUCTS_LIST = '/api/v1/Product';
 
   final String API_STORE_LIST =
-      'https://648ff4ac1e6aa71680ca4908.mockapi.io/Store';
+      '/api/v1/Store';
+
+  final String API_ORDER_LIST =
+      '/api/v1/Order';
 }

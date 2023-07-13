@@ -1,21 +1,24 @@
 class Product {
-  int? id;
+  String? id;
   String name;
-  double originalPrice;
   String? description;
-  String productUrl;
+  double price;
+  String imageUrl;
+  String? storeId;
 
   Product(
       {this.id,
       required this.name,
-      required this.originalPrice,
       this.description,
-      required this.productUrl});
+      required this.price,
+      required this.imageUrl,
+      this.storeId});
 
   Product.fromJson(Map<String, dynamic> json)
-      : id = int.tryParse(json['id'].toString()),
+      : id = json['id'],
         name = json['name'],
-        originalPrice = double.tryParse(json['originalPrice'].toString())!,
         description = json['description'],
-        productUrl = json['productUrl'];
+        price = double.tryParse(json['price'].toString())!,
+        imageUrl = json['imageUrl'],
+        storeId = json['storeId'];
 }

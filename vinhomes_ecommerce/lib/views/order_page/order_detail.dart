@@ -7,51 +7,29 @@ import 'package:provider/provider.dart';
 import 'package:vinhomes_ecommerce/models/order.dart';
 import 'package:vinhomes_ecommerce/models/store.dart';
 import 'package:vinhomes_ecommerce/resources/dismiss_keyboard_widget.dart';
+import 'package:vinhomes_ecommerce/views/cart_page/component/cart_detail/order_payment.dart';
 import 'package:vinhomes_ecommerce/views/cart_page/order_success.dart';
 
 import '../../view_models/order_view_model.dart';
 import '../../view_models/product_view_model.dart';
-import 'component/cart_detail/order_details_list.dart';
-import 'component/cart_detail/shipping_info.dart';
+import 'order_detail/order_details_list.dart';
+import 'order_detail/shipping_info.dart';
 
-class CartDetail extends StatefulWidget {
+class OrderListDetail extends StatefulWidget {
   final Order order;
   final Store store;
-  const CartDetail({super.key, required this.order, required this.store});
+  const OrderListDetail({super.key, required this.order, required this.store});
 
   @override
-  State<CartDetail> createState() => _CartDetailState();
+  State<OrderListDetail> createState() => _OrderListDetailState();
 }
 
-class _CartDetailState extends State<CartDetail> {
+class _OrderListDetailState extends State<OrderListDetail> {
   @override
   void initState() {
     super.initState();
 
     Provider.of<ProductViewModel>(context, listen: false).fetchProductList();
-  }
-
-  void onShippingInfoChange(String text) {
-    setState(() {
-      widget.order.address = text;
-    });
-  }
-
-  void onButtonCheckoutClick() {
-    try {
-      print(jsonEncode(widget.order));
-      widget.order.status = OrderStatus.HasCheckedOut.index + 1;
-      OrderViewModel().updateOrder(widget.order);
-
-      Navigator.pushReplacement(
-          context, MaterialPageRoute(builder: (content) => OrderSuccessPage()));
-    } catch (exception) {
-      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-        content: Text("Error when add to cart"),
-        duration: Duration(seconds: 5),
-      ));
-      Navigator.of(context).pop();
-    }
   }
 
   @override
@@ -81,15 +59,15 @@ class _CartDetailState extends State<CartDetail> {
           SliverToBoxAdapter(
               child: Column(
             children: [
-              ShippingInfoWidget(onChange: onShippingInfoChange),
+              ShippingInfoWidget(
+                address: widget.order.address!,
+              ),
               Divider(thickness: 5),
               SizedBox(height: 10),
               OrderDetailList(orderDetailList: widget.order.orderDetails!),
               Divider(thickness: 5),
               //PaymentMethod(),
-              GestureDetector(
-                onTap: onButtonCheckoutClick,
-                child: Container(
+              Container(
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.all(Radius.circular(18)),
                     color: Color.fromRGBO(41, 45, 50, 1),
@@ -101,7 +79,7 @@ class _CartDetailState extends State<CartDetail> {
                       Icon(Icons.shopping_cart, color: Colors.white),
                       SizedBox(width: 10),
                       Text(
-                        'Thanh toán',
+                        'Tổng cộng',
                         textAlign: TextAlign.left,
                         style: TextStyle(
                           color: Color.fromRGBO(255, 255, 255, 1),
@@ -121,8 +99,6 @@ class _CartDetailState extends State<CartDetail> {
                     ],
                   ),
                 ),
-              ),
-              SizedBox(height: 30),
             ],
           ))
         ],

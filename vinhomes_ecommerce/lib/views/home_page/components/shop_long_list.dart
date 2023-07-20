@@ -31,14 +31,20 @@ class _ShopLongListViewState extends State<ShopLongListView> {
           padding: EdgeInsets.all(3),
           child: Text(widget.title),
         ),
-        SingleChildScrollView(
-            scrollDirection: Axis.horizontal,
-            child: Row(
-                children: storeOnProvider.storeList
-                    .map((store) => ShopLongCardView(
-                          store: store,
-                        ))
-                    .toList())),
+        storeOnProvider.storeList.isNotEmpty
+            ? SingleChildScrollView(
+                scrollDirection: Axis.horizontal,
+                child: Row(
+                    children: storeOnProvider.storeList
+                        .map((store) => ShopLongCardView(
+                              store: store,
+                            ))
+                        .toList()))
+            : Container(
+                width: double.infinity,
+                height: 80,
+                child: Center(child: CircularProgressIndicator()),
+              )
       ],
     );
   }

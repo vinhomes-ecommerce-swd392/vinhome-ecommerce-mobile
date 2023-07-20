@@ -3,17 +3,17 @@ import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:vinhomes_ecommerce/models/order.dart';
 import 'package:vinhomes_ecommerce/models/store.dart';
 
-class CartItemWidget extends StatefulWidget {
+class OrderItemWidget extends StatefulWidget {
   final Order order;
   final List<Store> storeList;
-  const CartItemWidget(
+  const OrderItemWidget(
       {super.key, required this.order, required this.storeList});
 
   @override
-  State<CartItemWidget> createState() => _CartItemWidgetState();
+  State<OrderItemWidget> createState() => _OrderItemWidgetState();
 }
 
-class _CartItemWidgetState extends State<CartItemWidget> {
+class _OrderItemWidgetState extends State<OrderItemWidget> {
   @override
   Widget build(BuildContext context) {
     Store store = widget.storeList

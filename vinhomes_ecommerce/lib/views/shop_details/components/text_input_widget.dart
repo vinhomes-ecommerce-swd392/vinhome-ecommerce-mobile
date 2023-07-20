@@ -28,6 +28,7 @@ class _TextInputWidgetState extends State<TextInputWidget> {
 
     return TextField(
       controller: controller,
+      onChanged: (value) => {widget.onChangeText(value)},
       decoration: InputDecoration(
         prefixIcon: const Icon(Icons.message),
         border: OutlineInputBorder(

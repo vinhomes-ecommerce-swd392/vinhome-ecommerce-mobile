@@ -3,7 +3,7 @@ import 'package:provider/provider.dart';
 import 'package:vinhomes_ecommerce/models/order.dart';
 import 'package:vinhomes_ecommerce/models/product.dart';
 import 'package:vinhomes_ecommerce/view_models/product_view_model.dart';
-import 'package:vinhomes_ecommerce/views/cart_page/component/cart_detail/order_details_item.dart';
+import 'package:vinhomes_ecommerce/views/order_page/order_detail/order_details_item.dart';
 
 class OrderDetailList extends StatefulWidget {
   final List<OrderDetail> orderDetailList;

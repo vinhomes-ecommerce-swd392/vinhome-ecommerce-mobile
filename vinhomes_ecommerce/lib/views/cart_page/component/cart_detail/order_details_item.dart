@@ -72,10 +72,11 @@ class _OrderDetailsItemState extends State<OrderDetailsItem> {
                                   style: TextStyle(
                                       fontSize: 20,
                                       fontWeight: FontWeight.bold))),
-                          Text('\$${widget.orderDetail.price}')
+                          Text(
+                              '\$${widget.orderDetail.price.toStringAsFixed(2)}')
                         ],
                       ),
-                      Text('Ghi chu',
+                      Text(widget.orderDetail.note!,
                           maxLines: 2,
                           overflow: TextOverflow.ellipsis,
                           softWrap: false,
@@ -89,7 +90,9 @@ class _OrderDetailsItemState extends State<OrderDetailsItem> {
                                         productId: widget.orderDetail.productId,
                                         itemQuantity:
                                             widget.orderDetail.quantity,
-                                      )));
+                                      ))).then((value) {
+                            setState(() {});
+                          });
                         },
                         child: Text('Chinh sua',
                             style: TextStyle(

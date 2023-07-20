@@ -19,7 +19,6 @@ class _ShopListViewState extends State<ShopListView> {
     Provider.of<StoreViewModel>(context, listen: false).fetchStoreList();
   }
 
-
   @override
   Widget build(BuildContext context) {
     final storeOnProvider = Provider.of<StoreViewModel>(context);
@@ -31,14 +30,20 @@ class _ShopListViewState extends State<ShopListView> {
           padding: EdgeInsets.all(3),
           child: Text(widget.title),
         ),
-        SingleChildScrollView(
-            scrollDirection: Axis.horizontal,
-            child: Row(
-                children: storeOnProvider.storeList
-                    .map((store) => ShopSmallCardView(
-                          store: store,
-                        ))
-                    .toList())),
+        storeOnProvider.storeList.isNotEmpty
+            ? SingleChildScrollView(
+                scrollDirection: Axis.horizontal,
+                child: Row(
+                    children: storeOnProvider.storeList
+                        .map((store) => ShopSmallCardView(
+                              store: store,
+                            ))
+                        .toList()))
+            : Container(
+                width: double.infinity,
+                height: 80,
+                child: Center(child: CircularProgressIndicator()),
+              )
       ],
     );
   }

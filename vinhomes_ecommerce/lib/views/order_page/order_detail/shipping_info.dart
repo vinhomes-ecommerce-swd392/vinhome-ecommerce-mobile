@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
-import '../../../shop_details/components/text_input_widget.dart';
+import '../../shop_details/components/text_input_widget.dart';
 
 class ShippingInfoWidget extends StatefulWidget {
-  final Function(String) onChange;
-  const ShippingInfoWidget({super.key, required this.onChange});
+  final String address;
+  const ShippingInfoWidget({super.key, required this.address});
 
   @override
   State<ShippingInfoWidget> createState() => _ShippingInfoWidgetState();
@@ -33,21 +33,9 @@ class _ShippingInfoWidgetState extends State<ShippingInfoWidget> {
                   ],
                 )),
             SizedBox(height: 15),
-            TextField(
-              controller: controller,
-              onChanged: (value) => {widget.onChange(value)},
-              decoration: InputDecoration(
-                prefixIcon: const Icon(Icons.message),
-                border: OutlineInputBorder(
-                  borderSide: BorderSide(color: borderColor),
-                ),
-                focusedBorder: OutlineInputBorder(
-                  borderSide: BorderSide(color: Colors.black38),
-                ),
-                enabledBorder: OutlineInputBorder(
-                  borderSide: BorderSide(color: borderColor),
-                ),
-              ),
+            Text(
+              widget.address,
+              style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
             ),
           ],
         ));

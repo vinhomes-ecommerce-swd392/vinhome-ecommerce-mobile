@@ -1,7 +1,11 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:vinhomes_ecommerce/models/order.dart';
 
 import '../data_resources/order/order_api_service.dart';
+import '../models/user.dart';
 
 class OrderViewModel with ChangeNotifier {
   List<Order> orderList = [];
@@ -13,8 +17,12 @@ class OrderViewModel with ChangeNotifier {
   }
 
   fetchOrderListByUser(String userId) async {
-    this.orderList = await OrderApiServices()
-        .fetchOrderListByUser("1e3c96c9-1471-23e0-8765-390639088226");
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    String? userJson = prefs.getString("userInfo");
+    print(userJson!);
+    User customer = User.fromJson(jsonDecode(userJson!));
+    this.orderList =
+        await OrderApiServices().fetchOrderListByUser(customer.id!);
     notifyListeners();
   }
 

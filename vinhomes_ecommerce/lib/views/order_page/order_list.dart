@@ -8,16 +8,18 @@ import 'package:vinhomes_ecommerce/view_models/user_view_model.dart';
 import 'package:vinhomes_ecommerce/views/cart_page/component/cart_list/cart_item.dart';
 
 import '../../models/store.dart';
-import 'cart_detail.dart';
+import 'order_detail.dart';
+import 'order_detail/order_details_list.dart';
+import 'order_list/order_item.dart';
 
-class CartList extends StatefulWidget {
-  const CartList({super.key});
+class OrderList extends StatefulWidget {
+  const OrderList({super.key});
 
   @override
-  State<CartList> createState() => _CartListState();
+  State<OrderList> createState() => _OrderListState();
 }
 
-class _CartListState extends State<CartList> {
+class _OrderListState extends State<OrderList> {
   @override
   void initState() {
     super.initState();
@@ -35,7 +37,7 @@ class _CartListState extends State<CartList> {
     print('User name: ${userOnProvider.user!.name}');
 
     var orderList = orderOnProvider.orderList
-        .where((element) => element.status == OrderStatus.InCart.index + 1)
+        .where((element) => element.status != OrderStatus.InCart.index + 1)
         .toList();
     return Scaffold(
       body: SafeArea(
@@ -79,12 +81,12 @@ class _CartListState extends State<CartList> {
                                 (store) =>
                                     store.id == orderList[index].storeId);
 
-                            return CartDetail(
+                            return OrderListDetail(
                                 order: orderList[index], store: store);
                           }));
                         },
                         child: ListTile(
-                          title: CartItemWidget(
+                          title: OrderItemWidget(
                             order: orderList[index],
                             storeList: storeOnProvider.storeList,
                           ),

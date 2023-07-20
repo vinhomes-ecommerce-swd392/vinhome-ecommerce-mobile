@@ -5,6 +5,7 @@ import 'package:vinhomes_ecommerce/resources/utils/firebase_utils.dart';
 import 'package:vinhomes_ecommerce/view_models/order_view_model.dart';
 import 'package:vinhomes_ecommerce/view_models/product_view_model.dart';
 import 'package:vinhomes_ecommerce/view_models/store_view_model.dart';
+import 'package:vinhomes_ecommerce/view_models/user_view_model.dart';
 import 'firebase_options.dart';
 import "views/login.dart";
 
@@ -25,6 +26,7 @@ class MainApp extends StatelessWidget {
         ChangeNotifierProvider(create: (context) => ProductViewModel()),
         ChangeNotifierProvider(create: (context) => StoreViewModel()),
         ChangeNotifierProvider(create: (context) => OrderViewModel()),
+        ChangeNotifierProvider(create: (context) => UserViewModel()),
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,

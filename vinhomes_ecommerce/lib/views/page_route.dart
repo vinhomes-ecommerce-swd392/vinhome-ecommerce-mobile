@@ -4,12 +4,14 @@ import '../resources/bottom_nav_bar.dart';
 import 'cart_page/cart_list.dart';
 import 'home_page/home_widget.dart';
 import 'home_page/search_page.dart';
+import 'order_page/order_list.dart';
 import 'shop_details/shop_widget.dart';
+import 'user_profile/user_profile.dart';
 
 class HomePage extends StatelessWidget {
-  User user;
+  User? user;
 
-  HomePage({super.key, required this.user});
+  HomePage({super.key, this.user});
 
   @override
   Widget build(BuildContext context) {
@@ -38,11 +40,11 @@ class _HomeBodyState extends State<HomeBody> {
       case 0:
         return HomeWidget();
       case 1:
-        return CartWidget();
+        return CartList();
       case 2:
-        return OrdersWidget();
+        return OrderList();
       case 3:
-        return ProfileWidget();
+        return UserProfilePage();
       default:
         return Container();
     }
@@ -77,17 +79,6 @@ class OrdersWidget extends StatelessWidget {
           ),
         ),
       ),
-    );
-  }
-}
-
-class ProfileWidget extends StatelessWidget {
-  const ProfileWidget({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Center(
-      child: Text('ProfileWidget View'),
     );
   }
 }

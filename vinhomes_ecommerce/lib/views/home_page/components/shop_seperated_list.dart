@@ -21,20 +21,26 @@ class _SeperatedListState extends State<SeperatedList> {
   @override
   Widget build(BuildContext context) {
     final storeOnProvider = Provider.of<StoreViewModel>(context);
-    return ListView.separated(
-        shrinkWrap: true,
-        physics: NeverScrollableScrollPhysics(),
-        scrollDirection: Axis.vertical,
-        itemBuilder: (context, index) {
-          return ShopSeperatedItem(
-            store: storeOnProvider.storeList[index],
+    return storeOnProvider.storeList.isNotEmpty
+        ? ListView.separated(
+            shrinkWrap: true,
+            physics: NeverScrollableScrollPhysics(),
+            scrollDirection: Axis.vertical,
+            itemBuilder: (context, index) {
+              return ShopSeperatedItem(
+                store: storeOnProvider.storeList[index],
+              );
+            },
+            separatorBuilder: (context, index) {
+              return Divider(
+                color: Theme.of(context).primaryColor,
+              );
+            },
+            itemCount: storeOnProvider.storeList.length)
+        : Container(
+            width: double.infinity,
+            height: 80,
+            child: Center(child: CircularProgressIndicator()),
           );
-        },
-        separatorBuilder: (context, index) {
-          return Divider(
-            color: Theme.of(context).primaryColor,
-          );
-        },
-        itemCount: storeOnProvider.storeList.length);
   }
 }

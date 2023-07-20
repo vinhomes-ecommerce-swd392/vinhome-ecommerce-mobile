@@ -1,7 +1,10 @@
+import 'dart:convert';
 import 'dart:math';
 
 import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:vinhomes_ecommerce/models/user.dart';
 import 'package:vinhomes_ecommerce/resources/utils/firebase_utils.dart';
 
 import '../../../models/order.dart';
@@ -26,9 +29,13 @@ class AddToCartButton extends StatefulWidget {
 }
 
 class _AddToCartButtonState extends State<AddToCartButton> {
-  String randomUserId = '1e3c96c9-1471-23e0-8765-390639088226';
-
   Future<void> onButtonClick() async {
+    User customer;
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    String? customerJson = prefs.getString("userInfo");
+    customer = User.fromJson(jsonDecode(customerJson!));
+    ;
+
     Order? currentCart = widget.storeCurrentCart;
 
     bool hasExistedItem = false;
@@ -43,7 +50,7 @@ class _AddToCartButtonState extends State<AddToCartButton> {
     }
     try {
       if (currentCart != null && hasExistedItem) {
-        existedItem!.quantity += widget.quantity;
+        existedItem!.quantity = widget.quantity;
 
         // then update
         currentCart.total = currentCart.orderDetails!.fold(
@@ -79,14 +86,14 @@ class _AddToCartButtonState extends State<AddToCartButton> {
             orderDate: DateTime.now(),
             total: 0,
             status: OrderStatus.InCart.index + 1,
-            customerId: randomUserId,
+            customerId: customer.id!,
             storeId: widget.product.storeId!,
             fcmToken: fcmToken,
             orderDetails: List.empty(growable: true));
         currentCart.orderDetails!.add(newItem);
         currentCart.total = currentCart.orderDetails!.fold(
             0, (total, element) => total! + element.price * element.quantity);
-        OrderViewModel().addNewOrder(currentCart!);
+        OrderViewModel().addNewOrder(currentCart);
       }
 
       ScaffoldMessenger.of(context).showSnackBar(SnackBar(
@@ -100,7 +107,7 @@ class _AddToCartButtonState extends State<AddToCartButton> {
         duration: Duration(seconds: 5),
       ));
     } finally {
-      Navigator.of(context).pop();
+      Navigator.of(context).pop("");
     }
   }
 

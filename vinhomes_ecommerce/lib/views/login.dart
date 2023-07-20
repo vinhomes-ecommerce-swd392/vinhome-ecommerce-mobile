@@ -1,5 +1,8 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:vinhomes_ecommerce/view_models/user_view_model.dart';
+import '../data_resources/user/user_api_service.dart';
 import '../resources/auth.dart';
 import 'page_route.dart';
 
@@ -29,11 +32,15 @@ class _LoginBodyState extends State<LoginBody> {
   }
 
   void pressed() {
-    signInWithGoogle().then((user) => {
-          this.user = user,
-          Navigator.pushReplacement(context,
-              MaterialPageRoute(builder: (content) => HomePage(user: user)))
-        });
+    signInWithGoogle().then((user) async {
+      this.user = user;
+      String googleToken = await user.getIdToken();
+      print('Token: ${googleToken}');
+      await Provider.of<UserViewModel>(context, listen: false)
+          .getValidateUser(googleToken);
+      Navigator.pushReplacement(context,
+          MaterialPageRoute(builder: (content) => HomePage(user: user)));
+    });
   }
 
   Widget googleLoginButton() {

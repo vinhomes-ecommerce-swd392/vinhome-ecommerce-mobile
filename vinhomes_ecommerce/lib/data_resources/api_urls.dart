@@ -8,4 +8,9 @@ class ApiUrls {
 
   final String API_ORDER_LIST =
       '/api/v1/Order';
+
+  final String API_USER_LIST =
+      '/api/v1/User';
+  final String API_USER_VALIDATION =
+      '/api/v1/User/login_validation';
 }
